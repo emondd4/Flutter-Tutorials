@@ -1,18 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+
+}
+
+class MyAppState extends State<MyApp>{
+
+  var questionIndex = 0;
   var questions = ["What's Your Favourite Color?","What's Your Favourite Game?", "What's Your Favourite Porn Site?"];
 
   void onButtonPressed(){
-    print("Clicked");
+    setState(() {
+      questionIndex += 1;
+    });
+    print("Question Index" + questionIndex.toString());
   }
 
   void onLongButtonPressed(){
@@ -38,8 +46,8 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(children: [
           Align(alignment: Alignment(0.0,-50.0),),
-          Text(questions.elementAt(0)),
-          ElevatedButton(child: Text("Answer 1"), onPressed: onButtonPressed, onLongPress: onLongButtonPressed,),
+          Text(questions.elementAt(questionIndex)),
+          ElevatedButton(child: Text("Answer 1"), onPressed: onButtonPressed,),
           ElevatedButton(child: Text("Answer 2"), onPressed: () => print("Second Button Pressed")),
           ElevatedButton(child: Text("Answer 3"), onPressed: () {
             //////
