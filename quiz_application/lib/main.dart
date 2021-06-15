@@ -6,25 +6,23 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
-
 }
 
-class MyAppState extends State<MyApp>{
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+  var _questions = [
+    "What's Your Favourite Color?",
+    "What's Your Favourite Game?",
+    "What's Your Favourite Porn Site?"
+  ];
 
-  var questionIndex = 0;
-  var questions = ["What's Your Favourite Color?","What's Your Favourite Game?", "What's Your Favourite Porn Site?"];
-
-  void onButtonPressed(){
+  void _onButtonPressed() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
-    print("Question Index" + questionIndex.toString());
-  }
-
-  void onLongButtonPressed(){
-    print("Long Press Clicked");
+    print("Question Index" + _questionIndex.toString());
   }
 
   @override
@@ -36,27 +34,40 @@ class MyAppState extends State<MyApp>{
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "My Quiz Application",
-            style: TextStyle(
-              color: Colors.white,
+          appBar: AppBar(
+            title: Text(
+              "My Quiz Application",
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        body: Column(children: [
-          Align(alignment: Alignment(0.0,-50.0),),
-          Text(questions.elementAt(questionIndex)),
-          ElevatedButton(child: Text("Answer 1"), onPressed: onButtonPressed,),
-          ElevatedButton(child: Text("Answer 2"), onPressed: () => print("Second Button Pressed")),
-          ElevatedButton(child: Text("Answer 3"), onPressed: () {
-            //////
-            print("Third Button Pressed");
-          }, onLongPress: onLongButtonPressed,),
-        ],),
-      ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  _questions.elementAt(_questionIndex),
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center,
+                ),
+                ElevatedButton(
+                  child: Text("Answer 1"),
+                  onPressed: _onButtonPressed,
+                ),
+                ElevatedButton(
+                    child: Text("Answer 2"),
+                    onPressed: () => print("Second Button Pressed")),
+                ElevatedButton(
+                  child: Text("Answer 3"),
+                  onPressed: () {
+                    //////
+                    print("Third Button Pressed");
+                  },
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
-
-
