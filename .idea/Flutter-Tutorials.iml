@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_wrap/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_wrap/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_recycler/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_recycler/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Drawer/flutter_3d_drawer/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Drawer/flutter_3d_drawer/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_richtext/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_richtext/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Drawer/flutter_basic_drawer/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Drawer/flutter_basic_drawer/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_circleavater/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_circleavater/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/simple_icon/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/simple_icon/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_splash/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_splash/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_recycler_custom_item/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_recycler_custom_item/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_webview/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_webview/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_appbar_screenchange/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_appbar_screenchange/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_flexible/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_flexible/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_introduction_page/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_introduction_page/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_calculator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_calculator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/page_transition_animation/build" />
+      <excludeFolder url="file://$MODULE_DIR$/page_transition_animation/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_expanded/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/flutter_expanded/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_appicon/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_appicon/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/simple_textview/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Widgets/simple_textview/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
