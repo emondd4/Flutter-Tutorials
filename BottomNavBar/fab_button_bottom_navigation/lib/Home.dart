@@ -27,98 +27,89 @@ class _HomeScreenState extends State<HomeScreen> {
         notchMargin: 10,
         child: Container(
           height: 60,
+          width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MaterialButton(
+                    minWidth: 40,
                     onPressed: () {
                       setState(() {
                         _currentTab = 0;
                       });
                     },
-                    minWidth: 40,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.dashboard,
-                            color:
-                                _currentTab == 0 ? Colors.blue : Colors.grey),
-                        Text(
-                          "Dashboard",
-                          style: TextStyle(
-                              color:
-                                  _currentTab == 0 ? Colors.blue : Colors.grey),
-                        )
+                        Icon(
+                          Icons.dashboard,
+                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                        ),
+                        // Text(
+                        //   "Dashboard",
+                        //   style: TextStyle(
+                        //       color:
+                        //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                        // )
                       ],
                     ),
                   ),
                   MaterialButton(
+                    minWidth: 40,
                     onPressed: () {
                       setState(() {
                         _currentTab = 0;
                       });
                     },
-                    minWidth: 40,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.dashboard,
-                            color:
-                            _currentTab == 0 ? Colors.blue : Colors.grey),
-                        Text(
-                          "Dashboard",
-                          style: TextStyle(
-                              color:
-                              _currentTab == 0 ? Colors.blue : Colors.grey),
-                        )
+                        Icon(
+                          Icons.verified_user,
+                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MaterialButton(
+                    minWidth: 40,
                     onPressed: () {
                       setState(() {
                         _currentTab = 0;
                       });
                     },
-                    minWidth: 40,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.dashboard,
-                            color:
-                            _currentTab == 0 ? Colors.blue : Colors.grey),
-                        Text(
-                          "Dashboard",
-                          style: TextStyle(
-                              color:
-                              _currentTab == 0 ? Colors.blue : Colors.grey),
-                        )
+                        Icon(
+                          Icons.money,
+                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                        ),
                       ],
                     ),
                   ),
                   MaterialButton(
+                    minWidth: 40,
                     onPressed: () {
                       setState(() {
                         _currentTab = 0;
                       });
                     },
-                    minWidth: 40,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.dashboard,
-                            color:
-                            _currentTab == 0 ? Colors.blue : Colors.grey),
-                        Text(
-                          "Dashboard",
-                          style: TextStyle(
-                              color:
-                              _currentTab == 0 ? Colors.blue : Colors.grey),
-                        )
+                        Icon(
+                          Icons.more,
+                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                        ),
                       ],
                     ),
                   ),
