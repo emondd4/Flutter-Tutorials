@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,91 +30,148 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 60,
           width: MediaQuery.of(context).size.width,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        _currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.dashboard,
-                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                        // Text(
-                        //   "Dashboard",
-                        //   style: TextStyle(
-                        //       color:
-                        //           _currentTab == 0 ? Colors.blue : Colors.grey),
-                        // )
-                      ],
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    _currentTab = 0;
+                  });
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.dashboard,
+                      color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                      size: 30.0,
                     ),
-                  ),
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        _currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.verified_user,
-                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                    // Text(
+                    //   "Dashboard",
+                    //   style: TextStyle(
+                    //       color:
+                    //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                    // )
+                  ],
+                ),
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        _currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.money,
-                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                      ],
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    _currentTab = 0;
+                  });
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.dashboard,
+                      color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                      size: 30.0,
                     ),
+                    // Text(
+                    //   "Dashboard",
+                    //   style: TextStyle(
+                    //       color:
+                    //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                    // )
+                  ],
+                ),
+              ),
+              Visibility(
+                child: MaterialButton(
+                  minWidth: 40,
+                  onPressed: () {
+                    setState(() {
+                      _currentTab = 0;
+                    });
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.dashboard,
+                        color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                        size: 30.0,
+                      ),
+                      // Text(
+                      //   "Dashboard",
+                      //   style: TextStyle(
+                      //       color:
+                      //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                      // )
+                    ],
                   ),
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        _currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.more,
-                          color: _currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                      ],
+                ),
+                maintainState: true,
+                maintainAnimation: true,
+                maintainSize: true,
+                visible: false,
+              ),
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    _currentTab = 0;
+                  });
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.dashboard,
+                      color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                      size: 30.0,
                     ),
-                  ),
-                ],
+                    // Text(
+                    //   "Dashboard",
+                    //   style: TextStyle(
+                    //       color:
+                    //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                    // )
+                  ],
+                ),
+              ),
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    _currentTab = 0;
+                  });
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.dashboard,
+                      color: _currentTab == 0 ? Colors.blue : Colors.grey,
+                      size: 30.0,
+                    ),
+                    // Text(
+                    //   "Dashboard",
+                    //   style: TextStyle(
+                    //       color:
+                    //           _currentTab == 0 ? Colors.blue : Colors.grey),
+                    // )
+                  ],
+                ),
               ),
             ],
           ),
