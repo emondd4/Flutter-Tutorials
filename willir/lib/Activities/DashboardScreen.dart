@@ -13,286 +13,151 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
+    var totalHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              Container(
-                height: 100,
-                color: CustomColors.PrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Mr Mohammad Oitabi",
-                        style: CustomTextStyle.ButtonTextWhite,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 20.0, 0, 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Text(
-                                "Balance: 3500 SA",
-                                style: CustomTextStyle.ButtonTextWhiteSmall,
-                                textAlign: TextAlign.start,
-                              ),
-                              flex: 1,
-                            ),
-                            Flexible(
-                              child: Text(
-                                "File No: 100376",
-                                style: CustomTextStyle.ButtonTextWhiteSmall,
-                                textAlign: TextAlign.end,
-                              ),
-                              flex: 1,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+      appBar: AppBar(
+        toolbarHeight: 100,
+        automaticallyImplyLeading: false,
+        flexibleSpace: SafeArea(
+          child: Container(
+            color: CustomColors.PrimaryColor,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Mr Mohammad Oitabi",
+                    style: CustomTextStyle.ButtonTextWhite,
                   ),
-                ),
-              ),
-              Container(
-
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20.0, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Most Requested",
-                          style: CustomTextStyle.AttentionCyan,
-                          textAlign: TextAlign.start,
-                        ),
-
-                        SizedBox(height: 10,),
-
-                        Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          clipBehavior: Clip.antiAlias,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 150,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                      "assets/images/dummy_doc.jpg",
-                                    ),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Card(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                  color: CustomColors.White,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Text("Book Now", style: CustomTextStyle.ButtonTextCyanSmall,),
-                                  ),
-                                )
-                              ],
-                            ),
+                        Flexible(
+                          child: Text(
+                            "Balance: 3500 SA",
+                            style: CustomTextStyle.ButtonTextWhiteSmall,
+                            textAlign: TextAlign.start,
                           ),
+                          flex: 1,
                         ),
-
-                        SizedBox(height: 10,),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 110,
-                              decoration: BoxDecoration(
-                                color: CustomColors.White,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: CustomColors.Grey,width: 2)
-                              ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_checkin.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Check In', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_friends.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Friends Offer', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_pharmacy.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Pharmacy', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 10,),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_service.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Our Services', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_doctors.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Our Doctors', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_video.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Live Video Consult', style: CustomTextStyle.ButtonTextCyanSmall, textAlign: TextAlign.center,)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 10,),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_points.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('My Points', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_directions.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Directions', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                            Container(
-                                width: 90,
-                                height: 110,
-                                decoration: BoxDecoration(
-                                    color: CustomColors.White,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: CustomColors.Grey,width: 2)
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('assets/images/dashboard_contact.png', height: 60,),
-                                    SizedBox(height: 10,),
-                                    Text('Contact Us', style: CustomTextStyle.ButtonTextCyanSmall,)
-                                  ],
-                                )
-                            ),
-                          ],
+                        Flexible(
+                          child: Text(
+                            "File No: 100376",
+                            style: CustomTextStyle.ButtonTextWhiteSmall,
+                            textAlign: TextAlign.end,
+                          ),
+                          flex: 1,
                         ),
                       ],
                     ),
-                  ),
-                ),
+                  )
+                ],
               ),
-            ],
+            ),
+          ),
+        ),
+      ),
+      body: Container(
+        height: totalHeight,
+        child: Container(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Most Requested",
+                    style: CustomTextStyle.AttentionCyan,
+                    textAlign: TextAlign.start,
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      height: 180,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                "assets/images/dummy_doc.jpg",
+                              ),
+                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: CustomColors.White,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text(
+                                "Book Now",
+                                style: CustomTextStyle.ButtonTextCyanSmall,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  GridView(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 10,mainAxisSpacing: 10),
+                    children: [
+                      buildCard(
+                          "assets/images/dashboard_checkin.png", "Check In"),
+                      buildCard(
+                          "assets/images/dashboard_friends.png", "Friends Offer"),
+                      buildCard(
+                          "assets/images/dashboard_pharmacy.png", "Pharmacy"),
+                      buildCard(
+                          "assets/images/dashboard_service.png", "Our Service"),
+                      buildCard(
+                          "assets/images/dashboard_doctors.png", "Our Doctors"),
+                      buildCard(
+                          "assets/images/dashboard_video.png", "Live Video Consult"),
+                      buildCard(
+                          "assets/images/dashboard_points.png", "My Points"),
+                      buildCard(
+                          "assets/images/dashboard_directions.png", "Directions"),
+                      buildCard(
+                          "assets/images/dashboard_contact.png", "Contact Us"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
       bottomNavigationBar: Container(
-        height: 60,
+        height: totalHeight * .09,
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -349,5 +214,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
     );
+  }
+
+  buildCard(String image, String title) {
+    return Container(
+        decoration: BoxDecoration(
+            color: CustomColors.White,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: CustomColors.Grey, width: 2)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              height: 60,
+              width: 60,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              title,
+              style: CustomTextStyle.ButtonTextCyanSmall,
+            )
+          ],
+        ));
   }
 }
