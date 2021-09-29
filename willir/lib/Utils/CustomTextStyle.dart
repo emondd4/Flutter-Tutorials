@@ -23,6 +23,12 @@ class CustomTextStyle {
     color: CustomColors.PrimaryColor,
   );
 
+  static const ButtonTextMedium = TextStyle(
+    fontSize: 18.0,
+    fontFamily: 'Poppins',
+    color: CustomColors.PrimaryColor,
+  );
+
   static const ButtonTextWhite = TextStyle(
     fontSize: 18.0,
     fontFamily: 'Poppins',
@@ -37,6 +43,12 @@ class CustomTextStyle {
 
   static const ButtonTextCyanSmall = TextStyle(
     fontSize: 12.0,
+    fontFamily: 'Poppins',
+    color: CustomColors.PrimaryColor,
+  );
+
+  static const CardTextCyanSmall = TextStyle(
+    fontSize: 10.0,
     fontFamily: 'Poppins',
     color: CustomColors.PrimaryColor,
   );

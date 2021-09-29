@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:willir/Utils/CustomButtonStyle.dart';
 import 'package:willir/Utils/CustomColors.dart';
 import 'package:willir/Utils/CustomTextStyle.dart';
 
@@ -11,73 +12,95 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-
-  var selectedIndex = 0;
-  var _isSelected = false;
+  int selectedIndex = 0;
+  bool _visible = true;
+  String _title = "";
 
   @override
   Widget build(BuildContext context) {
-    var totalHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    var totalHeight = MediaQuery.of(context).size.height;
 
-    var totalWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var totalWidth = MediaQuery.of(context).size.width;
 
     final _containerList = [
       homeContainer(totalWidth),
       profileContainer(totalWidth),
+      paymentContainer(totalWidth),
+      dashboardCheckInContainer(totalWidth),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        automaticallyImplyLeading: false,
-        flexibleSpace: SafeArea(
-          child: Container(
-            color: CustomColors.PrimaryColor,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Mr Mohammad Oitabi",
-                    style: CustomTextStyle.ButtonTextWhite,
+      appBar: _visible == false
+          ? AppBar(
+              automaticallyImplyLeading: false,
+              flexibleSpace: SafeArea(
+                child: Container(
+                  color: CustomColors.White,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 10,),
+                      Text(
+                        _title,
+                        style: CustomTextStyle.ButtonTextMedium,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 14.0, 0, 0),
+                        child: Container(
+                          height: 5,
+                          color: CustomColors.PrimaryColor,
+                        ),
+                      )
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20.0, 0, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+              ),
+            )
+          : AppBar(
+              toolbarHeight: 100,
+              automaticallyImplyLeading: false,
+              flexibleSpace: SafeArea(
+                child: Container(
+                  color: CustomColors.PrimaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Flexible(
-                          child: Text(
-                            "Balance: 3500 SA",
-                            style: CustomTextStyle.ButtonTextWhiteSmall,
-                            textAlign: TextAlign.start,
-                          ),
-                          flex: 1,
+                        Text(
+                          "Mr Mohammad Oitabi",
+                          style: CustomTextStyle.ButtonTextWhite,
                         ),
-                        Flexible(
-                          child: Text(
-                            "File No: 100376",
-                            style: CustomTextStyle.ButtonTextWhiteSmall,
-                            textAlign: TextAlign.end,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 20.0, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "Balance: 3500 SA",
+                                  style: CustomTextStyle.ButtonTextWhiteSmall,
+                                  textAlign: TextAlign.start,
+                                ),
+                                flex: 1,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  "File No: 100376",
+                                  style: CustomTextStyle.ButtonTextWhiteSmall,
+                                  textAlign: TextAlign.end,
+                                ),
+                                flex: 1,
+                              ),
+                            ],
                           ),
-                          flex: 1,
-                        ),
+                        )
                       ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
       body: _containerList[selectedIndex],
       bottomNavigationBar: Container(
         height: totalHeight * .09,
@@ -98,12 +121,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 60,
                   child: Icon(
                     Icons.home,
-                    color: selectedIndex == 0 ? CustomColors.PrimaryColor: CustomColors.Grey,
+                    color: selectedIndex == 0
+                        ? CustomColors.PrimaryColor
+                        : CustomColors.Grey,
                     size: 32.0,
                   ),
                 ),
                 onTap: () {
                   setState(() {
+                    _visible = true;
                     selectedIndex = 0;
                   });
                 },
@@ -112,17 +138,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Container(
                   height: 60,
                   width: 60,
-                  child: Icon(Icons.person,
-                    color: selectedIndex == 1 ? CustomColors.PrimaryColor: CustomColors.Grey, size: 32.0,),
+                  child: Icon(
+                    Icons.person,
+                    color: selectedIndex == 1
+                        ? CustomColors.PrimaryColor
+                        : CustomColors.Grey,
+                    size: 32.0,
+                  ),
                 ),
                 onTap: () {
                   setState(() {
+                    _visible = true;
                     selectedIndex = 1;
                   });
                 },
               ),
               buildContainerBottomNavSpecial(Icons.calendar_today_outlined),
-              buildContainerBottomNav(Icons.credit_card, 2),
+              InkWell(
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  child: Icon(
+                    Icons.credit_card,
+                    color: selectedIndex == 2
+                        ? CustomColors.PrimaryColor
+                        : CustomColors.Grey,
+                    size: 32.0,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    _visible = false;
+                    _title = "Online Payment";
+                    selectedIndex = 2;
+                  });
+                },
+              ),
               buildContainerBottomNav(Icons.menu, 3),
             ],
           ),
@@ -192,7 +243,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10),
                 children: [
-                  buildCard("assets/images/dashboard_checkin.png", "Check In"),
+                  InkWell(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: CustomColors.White,
+                            borderRadius: BorderRadius.circular(10),
+                            border:
+                                Border.all(color: CustomColors.Grey, width: 2)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/dashboard_checkin.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Check In",
+                              style: CustomTextStyle.ButtonTextCyanSmall,
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        )),
+                    onTap: () {
+                      setState(() {
+                        _visible = false;
+                        _title = "Check In";
+                        selectedIndex = 3;
+                      });
+                    },
+                  ),
+                  //buildCard("assets/images/dashboard_checkin.png", "Check In"),
                   buildCard(
                       "assets/images/dashboard_friends.png", "Friends Offer"),
                   buildCard("assets/images/dashboard_pharmacy.png", "Pharmacy"),
@@ -271,7 +354,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 40,
               width: 40,
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Text(
               title,
               style: CustomTextStyle.ButtonTextCyanSmall,
@@ -281,7 +366,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ));
   }
 
-  buildProfileCard(String image, String title){
+  buildProfileCard(String image, String title) {
     return Container(
         decoration: BoxDecoration(
             color: CustomColors.White,
@@ -295,12 +380,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
               height: 40,
               width: 40,
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 5.0,right: 5.0),
+              padding: const EdgeInsets.only(left: 5.0, right: 5.0),
               child: Text(
                 title,
-                style: CustomTextStyle.ButtonTextCyanSmall,
+                style: CustomTextStyle.CardTextCyanSmall,
                 textAlign: TextAlign.center,
               ),
             )
@@ -319,63 +406,357 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(
                 height: 20,
               ),
-              GridView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10),
-                children: [
-                  buildProfileCard("assets/images/dashboard_doctors.png", "My Doctors"),
-                  buildProfileCard(
-                      "assets/images/profile_appointments.png", "My Appointments"),
-                  buildProfileCard(
-                      "assets/images/profile_vital_sign.png", "Vital Signs"),
-                  buildProfileCard(
-                      "assets/images/profile_appointments.png", "Prescription"),
-                  buildProfileCard(
-                      "assets/images/profile_bills.png", "My Bills"),
-                  buildProfileCard(
-                      "assets/images/profile_before_after.png", "Before/After Pictures"),
-                  buildProfileCard(
-                      "assets/images/profile_lab_results.png", "Lab Results"),
-                  buildProfileCard(
-                      "assets/images/profile_medicine.png", "My Medicines"),
-                  buildProfileCard(
-                      "assets/images/profile_visit_rating.png", "Visit Rating"),
-                  buildProfileCard(
-                      "assets/images/profile_doctor_rating.png", "Doctor Rating"),
-                  buildProfileCard(
-                      "assets/images/profile_past_appointments.png", "Past Appointments"),
-                  buildProfileCard(
-                      "assets/images/profile_service_rating.png", "Service Rating"),
-                  buildProfileCard(
-                      "assets/images/profile_req_sick.png", "Request Sick Leave"),
-                  buildProfileCard(
-                      "assets/images/profile_past_appointments.png", "Upcoming Appointments"),
-                  buildProfileCard(
-                      "assets/images/profile_balance.png", "My Balance"),
-                  buildProfileCard(
-                      "assets/images/profile_medical_report.png", "Request Medical Report"),
-                  buildProfileCard(
-                      "assets/images/profile_insurance.png", "Insurance Card"),
-                  buildProfileCard(
-                      "assets/images/profile_req_sick.png", "Sick Leaves"),
-                  buildProfileCard(
-                      "assets/images/profile_insurance_approvals.png", "Insurance Approvals"),
-                  buildProfileCard(
-                      "assets/images/profile_insurance_update.png", "Insurance Update"),
-                  buildProfileCard(
-                      "assets/images/profile_procedures.png", "Profile Procedures"),
-                  buildProfileCard(
-                      "assets/images/profile_allergies.png", "Allergies"),
-                  buildProfileCard(
-                      "assets/images/dashboard_points.png", "My Points"),
-                  buildProfileCard(
-                      "assets/images/profile_medical_report.png", "Medical Reports"),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
+                child: GridView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 30,
+                      mainAxisSpacing: 30),
+                  children: [
+                    buildProfileCard(
+                        "assets/images/dashboard_doctors.png", "My Doctors"),
+                    buildProfileCard("assets/images/profile_appointments.png",
+                        "My Appointments"),
+                    buildProfileCard(
+                        "assets/images/profile_vital_sign.png", "Vital Signs"),
+                    buildProfileCard("assets/images/profile_appointments.png",
+                        "Prescription"),
+                    buildProfileCard(
+                        "assets/images/profile_bills.png", "My Bills"),
+                    buildProfileCard("assets/images/profile_before_after.png",
+                        "Before/After Pictures"),
+                    buildProfileCard(
+                        "assets/images/profile_lab_results.png", "Lab Results"),
+                    buildProfileCard(
+                        "assets/images/profile_medicine.png", "My Medicines"),
+                    buildProfileCard("assets/images/profile_visit_rating.png",
+                        "Visit Rating"),
+                    buildProfileCard("assets/images/profile_doctor_rating.png",
+                        "Doctor Rating"),
+                    buildProfileCard(
+                        "assets/images/profile_past_appointments.png",
+                        "Past Appointments"),
+                    buildProfileCard("assets/images/profile_service_rating.png",
+                        "Service Rating"),
+                    buildProfileCard("assets/images/profile_req_sick.png",
+                        "Request Sick Leave"),
+                    buildProfileCard(
+                        "assets/images/profile_past_appointments.png",
+                        "Upcoming Appointments"),
+                    buildProfileCard(
+                        "assets/images/profile_balance.png", "My Balance"),
+                    buildProfileCard("assets/images/profile_medical_report.png",
+                        "Request Medical Report"),
+                    buildProfileCard("assets/images/profile_insurance.png",
+                        "Insurance Card"),
+                    buildProfileCard(
+                        "assets/images/profile_req_sick.png", "Sick Leaves"),
+                    buildProfileCard(
+                        "assets/images/profile_insurance_approvals.png",
+                        "Insurance Approvals"),
+                    buildProfileCard(
+                        "assets/images/profile_insurance_update.png",
+                        "Insurance Update"),
+                    buildProfileCard("assets/images/profile_procedures.png",
+                        "Profile Procedures"),
+                    buildProfileCard(
+                        "assets/images/profile_allergies.png", "Allergies"),
+                    buildProfileCard(
+                        "assets/images/dashboard_points.png", "My Points"),
+                    buildProfileCard("assets/images/profile_medical_report.png",
+                        "Medical Reports"),
+                  ],
+                ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  paymentContainer(double totalWidth) {
+    return Container(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "You can pay for your account or other accounts",
+                style: CustomTextStyle.ButtonTextCyanSmall,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: totalWidth,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Payment Type",
+                      style: CustomTextStyle.ButtonTextCyanSmall,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "File Number",
+                      style: CustomTextStyle.ButtonTextCyanSmall,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Amount",
+                      style: CustomTextStyle.ButtonTextCyanSmall,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Email",
+                      style: CustomTextStyle.ButtonTextCyanSmall,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Notes",
+                      style: CustomTextStyle.ButtonTextCyanSmall,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.PrimaryColor,
+                                      width: 2.0),
+                                  borderRadius: BorderRadius.circular(30)),
+                              filled: true,
+                              fillColor: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          "assets/images/visa.png",
+                          height: 40,
+                          width: 60,
+                        ),
+                        Image.asset(
+                          "assets/images/mastercard.png",
+                          height: 40,
+                          width: 60,
+                        ),
+                        Image.asset(
+                          "assets/images/mada.png",
+                          height: 40,
+                          width: 60,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50, right: 50),
+                      child: Container(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DashboardScreen()));
+                          },
+                          child: Text(
+                            "Register",
+                            style: CustomTextStyle.ButtonTextWhiteSmall,
+                          ),
+                          style: CustomButtonStyle.SocialSizeBtn,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  dashboardCheckInContainer(double totalWidth) {
+    return Container(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Image.asset(
+                "assets/images/dashboard_checkin.png",
+                height: 80,
+                width: 80,
+                fit: BoxFit.contain,
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50),
+                child: Container(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DashboardScreen()));
+                    },
+                    child: Text(
+                      "Check In Now",
+                      style: CustomTextStyle.ButtonTextWhiteSmall,
+                    ),
+                    style: CustomButtonStyle.SocialSizeBtn,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),
