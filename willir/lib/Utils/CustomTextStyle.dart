@@ -18,7 +18,7 @@ class CustomTextStyle {
   );
 
   static const ButtonText = TextStyle(
-    fontSize: 22.0,
+    fontSize: 28.0,
     fontFamily: 'Poppins',
     color: CustomColors.PrimaryColor,
   );
@@ -61,6 +61,12 @@ class CustomTextStyle {
 
   static const AttentionCyan = TextStyle(
     fontSize: 12.0,
+    fontFamily: 'Poppins',
+    color: CustomColors.PrimaryColor,
+  );
+
+  static const AttentionBigCyan = TextStyle(
+    fontSize: 28.0,
     fontFamily: 'Poppins',
     color: CustomColors.PrimaryColor,
   );

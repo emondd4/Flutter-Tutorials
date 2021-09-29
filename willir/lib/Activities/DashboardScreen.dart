@@ -27,6 +27,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       profileContainer(totalWidth),
       paymentContainer(totalWidth),
       dashboardCheckInContainer(totalWidth),
+      dashboardContactUsContainer(totalWidth),
+      dashboardMyPointsContainer(totalWidth),
     ];
 
     return Scaffold(
@@ -276,8 +278,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     },
                   ),
                   //buildCard("assets/images/dashboard_checkin.png", "Check In"),
-                  buildCard(
-                      "assets/images/dashboard_friends.png", "Friends Offer"),
+                  buildCard("assets/images/dashboard_friends.png", "Friends Offer"),
                   buildCard("assets/images/dashboard_pharmacy.png", "Pharmacy"),
                   buildCard(
                       "assets/images/dashboard_service.png", "Our Service"),
@@ -285,11 +286,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       "assets/images/dashboard_doctors.png", "Our Doctors"),
                   buildCard("assets/images/dashboard_video.png",
                       "Live Video Consult"),
-                  buildCard("assets/images/dashboard_points.png", "My Points"),
+                  InkWell(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: CustomColors.White,
+                            borderRadius: BorderRadius.circular(10),
+                            border:
+                            Border.all(color: CustomColors.Grey, width: 2)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/dashboard_points.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "My Points",
+                              style: CustomTextStyle.ButtonTextCyanSmall,
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        )),
+                    onTap: () {
+                      setState(() {
+                        _visible = false;
+                        _title = "My Points";
+                        selectedIndex = 5;
+                      });
+                    },
+                  ),
+                  // buildCard("assets/images/dashboard_points.png", "My Points"),
                   buildCard(
                       "assets/images/dashboard_directions.png", "Directions"),
-                  buildCard(
-                      "assets/images/dashboard_contact.png", "Contact Us"),
+                  InkWell(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: CustomColors.White,
+                            borderRadius: BorderRadius.circular(10),
+                            border:
+                            Border.all(color: CustomColors.Grey, width: 2)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/dashboard_contact.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Contact Us",
+                              style: CustomTextStyle.ButtonTextCyanSmall,
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        )),
+                    onTap: () {
+                      setState(() {
+                        _visible = false;
+                        _title = "Contact Us";
+                        selectedIndex = 4;
+                      });
+                    },
+                  ),
+                  //buildCard("assets/images/dashboard_contact.png", "Contact Us"),
                 ],
               ),
             ],
@@ -748,6 +812,123 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     },
                     child: Text(
                       "Check In Now",
+                      style: CustomTextStyle.ButtonTextWhiteSmall,
+                    ),
+                    style: CustomButtonStyle.SocialSizeBtn,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  dashboardContactUsContainer(double totalWidth) {
+    return Container(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Image.asset(
+                "assets/images/dashboard_contact.png",
+                height: 80,
+                width: 80,
+                fit: BoxFit.contain,
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50),
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: CustomColors.PrimaryColor,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/whatsapp.png",height: 30, width: 30,),
+                        SizedBox(width: 10,),
+                        Text("Direct Chat", style: CustomTextStyle.ButtonTextWhiteSmall,),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50),
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: CustomColors.PrimaryColor,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.phone,color: CustomColors.White,),
+                        SizedBox(width: 10,),
+                        Text("Direct Chat", style: CustomTextStyle.ButtonTextWhiteSmall,),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  dashboardMyPointsContainer(double totalWidth) {
+    return Container(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Text("150",style: CustomTextStyle.AttentionBigCyan,),
+              Text("Points",style: CustomTextStyle.AttentionCyan,),
+              SizedBox(
+                height: 100,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50),
+                child: Container(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DashboardScreen()));
+                    },
+                    child: Text(
+                      "Book Now",
                       style: CustomTextStyle.ButtonTextWhiteSmall,
                     ),
                     style: CustomButtonStyle.SocialSizeBtn,
