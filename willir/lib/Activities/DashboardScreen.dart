@@ -79,10 +79,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
       body: _containerList[selectedIndex],
-      // body: Container(
-      //   height: totalHeight,
-      //   child:
-      // ),
       bottomNavigationBar: Container(
         height: totalHeight * .09,
         child: Container(
@@ -102,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 60,
                   child: Icon(
                     Icons.home,
-                    color: selectedIndex ==0 ? CustomColors.PrimaryColor: CustomColors.Grey,
+                    color: selectedIndex == 0 ? CustomColors.PrimaryColor: CustomColors.Grey,
                     size: 32.0,
                   ),
                 ),
@@ -117,7 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   height: 60,
                   width: 60,
                   child: Icon(Icons.person,
-                    color: selectedIndex ==1 ? CustomColors.PrimaryColor: CustomColors.Grey, size: 32.0,),
+                    color: selectedIndex == 1 ? CustomColors.PrimaryColor: CustomColors.Grey, size: 32.0,),
                 ),
                 onTap: () {
                   setState(() {
@@ -285,9 +281,105 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ));
   }
 
+  buildProfileCard(String image, String title){
+    return Container(
+        decoration: BoxDecoration(
+            color: CustomColors.White,
+            borderRadius: BorderRadius.circular(100),
+            border: Border.all(color: CustomColors.PrimaryColor, width: 2)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              height: 40,
+              width: 40,
+            ),
+            SizedBox(height: 5,),
+            Padding(
+              padding: const EdgeInsets.only(left: 5.0,right: 5.0),
+              child: Text(
+                title,
+                style: CustomTextStyle.ButtonTextCyanSmall,
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ));
+  }
+
   profileContainer(double totalWidth) {
     return Container(
-      child: Text("Profile Fragment"),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              GridView(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                children: [
+                  buildProfileCard("assets/images/dashboard_doctors.png", "My Doctors"),
+                  buildProfileCard(
+                      "assets/images/profile_appointments.png", "My Appointments"),
+                  buildProfileCard(
+                      "assets/images/profile_vital_sign.png", "Vital Signs"),
+                  buildProfileCard(
+                      "assets/images/profile_appointments.png", "Prescription"),
+                  buildProfileCard(
+                      "assets/images/profile_bills.png", "My Bills"),
+                  buildProfileCard(
+                      "assets/images/profile_before_after.png", "Before/After Pictures"),
+                  buildProfileCard(
+                      "assets/images/profile_lab_results.png", "Lab Results"),
+                  buildProfileCard(
+                      "assets/images/profile_medicine.png", "My Medicines"),
+                  buildProfileCard(
+                      "assets/images/profile_visit_rating.png", "Visit Rating"),
+                  buildProfileCard(
+                      "assets/images/profile_doctor_rating.png", "Doctor Rating"),
+                  buildProfileCard(
+                      "assets/images/profile_past_appointments.png", "Past Appointments"),
+                  buildProfileCard(
+                      "assets/images/profile_service_rating.png", "Service Rating"),
+                  buildProfileCard(
+                      "assets/images/profile_req_sick.png", "Request Sick Leave"),
+                  buildProfileCard(
+                      "assets/images/profile_past_appointments.png", "Upcoming Appointments"),
+                  buildProfileCard(
+                      "assets/images/profile_balance.png", "My Balance"),
+                  buildProfileCard(
+                      "assets/images/profile_medical_report.png", "Request Medical Report"),
+                  buildProfileCard(
+                      "assets/images/profile_insurance.png", "Insurance Card"),
+                  buildProfileCard(
+                      "assets/images/profile_req_sick.png", "Sick Leaves"),
+                  buildProfileCard(
+                      "assets/images/profile_insurance_approvals.png", "Insurance Approvals"),
+                  buildProfileCard(
+                      "assets/images/profile_insurance_update.png", "Insurance Update"),
+                  buildProfileCard(
+                      "assets/images/profile_procedures.png", "Profile Procedures"),
+                  buildProfileCard(
+                      "assets/images/profile_allergies.png", "Allergies"),
+                  buildProfileCard(
+                      "assets/images/dashboard_points.png", "My Points"),
+                  buildProfileCard(
+                      "assets/images/profile_medical_report.png", "Medical Reports"),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
