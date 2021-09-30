@@ -16,6 +16,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   bool _visible = true;
   String _title = "";
 
+  List names = ["Emon Hossain","Akteruzzaman", "Mehedi Hasan Rashed","Cse Sajib Saha","Prinon Bhowmik","Shihasish Paul Pappu","Abul Kalam Azad"];
+
   @override
   Widget build(BuildContext context) {
     var totalHeight = MediaQuery.of(context).size.height;
@@ -29,6 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       dashboardCheckInContainer(totalWidth),
       dashboardContactUsContainer(totalWidth),
       dashboardMyPointsContainer(totalWidth),
+      dashboardOurDoctors(totalWidth),
     ];
 
     return Scaffold(
@@ -282,8 +285,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   buildCard("assets/images/dashboard_pharmacy.png", "Pharmacy"),
                   buildCard(
                       "assets/images/dashboard_service.png", "Our Service"),
-                  buildCard(
-                      "assets/images/dashboard_doctors.png", "Our Doctors"),
+                  InkWell(
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: CustomColors.White,
+                            borderRadius: BorderRadius.circular(10),
+                            border:
+                            Border.all(color: CustomColors.Grey, width: 2)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/dashboard_doctors.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Our Doctors",
+                              style: CustomTextStyle.ButtonTextCyanSmall,
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        )),
+                    onTap: () {
+                      setState(() {
+                        _visible = false;
+                        _title = "Our Doctors";
+                        selectedIndex = 6;
+                      });
+                    },
+                  ),
+                  // buildCard("assets/images/dashboard_doctors.png", "Our Doctors"),
                   buildCard("assets/images/dashboard_video.png",
                       "Live Video Consult"),
                   InkWell(
@@ -941,6 +975,81 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  dashboardOurDoctors(double totalWidth){
+    return Container(
+      child: ListView.builder(
+          itemCount: names.length,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,int index) => Container(
+            width: totalWidth,
+            child: Container(
+              width: totalWidth,
+              padding: EdgeInsets.only(top: 10,bottom: 10,left: 5,right: 5),
+              decoration: BoxDecoration(
+                border: Border.all(color: CustomColors.Grey)
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 80,
+                    width: 80,
+                    child: CircleAvatar(
+                        backgroundImage: AssetImage("assets/images/dummy_doc.jpg",)),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: totalWidth - 108,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(names[index],style: CustomTextStyle.AttentionCyan,),
+                          Text("Aesthetic Professor", style: CustomTextStyle.ButtonTextCyanSmall,),
+                          Container(
+                            width: totalWidth - 55,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("(75)", style: CustomTextStyle.ButtonTextCyanSmall,),
+                                    SizedBox(width: 5,),
+                                    Icon(Icons.star,color: CustomColors.Yellow, size: 14,),
+                                    Icon(Icons.star,color: CustomColors.Yellow, size: 14,),
+                                    Icon(Icons.star,color: CustomColors.Yellow, size: 14,),
+                                    Icon(Icons.star,color: CustomColors.Yellow, size: 14,),
+                                    Icon(Icons.star,color: CustomColors.Yellow, size: 14,),
+                                  ],
+                                ),
+
+                                Container(
+                                  height: 25,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      color: CustomColors.PrimaryColor,
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Text("See More",style: CustomTextStyle.ButtonTextWhiteSmall,textAlign: TextAlign.center,),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
       ),
     );
   }
