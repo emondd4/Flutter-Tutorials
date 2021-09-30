@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:willir/Activities/Common/EditTextWidget.dart';
 import 'package:willir/Activities/DashboardScreen.dart';
 import 'package:willir/Utils/CustomButtonStyle.dart';
 import 'package:willir/Utils/CustomColors.dart';
@@ -12,6 +13,18 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+  TextEditingController arabicNameController = new TextEditingController();
+  TextEditingController englishNameController = new TextEditingController();
+  TextEditingController genderController = new TextEditingController();
+  TextEditingController dobController = new TextEditingController();
+  TextEditingController nationalityController = new TextEditingController();
+  TextEditingController nationalIdController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
+  TextEditingController maritalController = new TextEditingController();
+  TextEditingController addressController = new TextEditingController();
+  TextEditingController postalController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,216 +46,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 5,
                 color: CustomColors.PrimaryColor,
               ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Name In Arabic",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-              width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Name In English",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Gender",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Date Of Birth",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Nationality",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("National ID/Iqama Number",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Phone Number",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Marital Status",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Address",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
-              Container(child: Padding(
-                padding: const EdgeInsets.fromLTRB(8,10,8,0),
-                child: Text("Postal Code",style: CustomTextStyle.AttentionCyan, textAlign: TextAlign.start,),
-              ),
-                width: MediaQuery.of(context).size.width,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.PrimaryColor, width: 2.0),
-                          borderRadius: BorderRadius.circular(30)),
-                      filled: true,
-                      fillColor: Colors.white),
-                ),
-              ),
+
+              EditTextWidget("Name In Arabic",arabicNameController),
+              EditTextWidget("Name In English",englishNameController),
+              EditTextWidget("Gender",genderController),
+              EditTextWidget("Date Of Birth",dobController),
+              EditTextWidget("Nationality",nationalityController),
+              EditTextWidget("National ID/Iqama Number",nationalIdController),
+              EditTextWidget("Phone Number",phoneController),
+              EditTextWidget("Marital Status",maritalController),
+              EditTextWidget("Address",addressController),
+              EditTextWidget("Postal Code",postalController),
+
               SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: () {

@@ -4,6 +4,8 @@ import 'package:willir/Utils/CustomButtonStyle.dart';
 import 'package:willir/Utils/CustomColors.dart';
 import 'package:willir/Utils/CustomTextStyle.dart';
 
+import 'Common/EditTextWidget.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   get onChanged => null;
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,40 +39,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 100,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: CustomColors.PrimaryColor, width: 2.0),
-                            borderRadius: BorderRadius.circular(30)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: CustomColors.PrimaryColor, width: 2.0),
-                            borderRadius: BorderRadius.circular(30)),
-                        hintText: 'Enter Email/Phone',
-                        filled: true,
-                        fillColor: Colors.white),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: CustomColors.PrimaryColor, width: 2.0),
-                            borderRadius: BorderRadius.circular(30)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: CustomColors.PrimaryColor, width: 2.0),
-                            borderRadius: BorderRadius.circular(30)),
-                        hintText: 'Enter Password',
-                        filled: true,
-                        fillColor: Colors.white,),
-                  ),
-                ),
+
+                EditTextWidget("Enter Email/Phone",emailController),
+                EditTextWidget("Enter Password",passwordController),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -145,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   label: Text('Sign In With Twitter', style: CustomTextStyle.ButtonTextWhiteSmall,),
                 ),
                 SizedBox(height: 50,),
-                Text("Register as a New User",style: CustomTextStyle.ButtonText,),
+                Text("Register as a New User",style: CustomTextStyle.ButtonTextCyanSmall,),
                 SizedBox(height: 20,)
               ],
             ),
