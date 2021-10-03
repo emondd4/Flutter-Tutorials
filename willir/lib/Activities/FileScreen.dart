@@ -15,6 +15,13 @@ class _FileScreenState extends State<FileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(child: Icon(Icons.arrow_back_ios, color: CustomColors.White,), onTap: () {
+          Navigator.pop(context);
+        },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       backgroundColor: CustomColors.PrimaryColor,
       body: Center(
         child: Column(

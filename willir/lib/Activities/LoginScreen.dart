@@ -21,6 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(child: Icon(Icons.arrow_back_ios, color: CustomColors.PrimaryColor,), onTap: () {
+          Navigator.pop(context);
+        },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,

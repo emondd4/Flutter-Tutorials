@@ -17,6 +17,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.PrimaryColor,
+      appBar: AppBar(
+        leading: InkWell(child: Icon(Icons.arrow_back_ios, color: CustomColors.White,), onTap: () {
+          Navigator.pop(context);
+        },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

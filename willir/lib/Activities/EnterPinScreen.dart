@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:willir/Activities/Common/PinEditText.dart';
 import 'package:willir/Utils/CustomButtonStyle.dart';
 import 'package:willir/Utils/CustomColors.dart';
 import 'package:willir/Utils/CustomTextStyle.dart';
@@ -15,6 +16,14 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.PrimaryColor,
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        leading: InkWell(child: Icon(Icons.arrow_back_ios, color: CustomColors.White,), onTap: () {
+          Navigator.pop(context);
+        },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -22,6 +31,7 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
             Image.asset(
               "assets/images/logo_white.png",
               width: 180,
+              height: 40,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,78 +49,12 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,),
-                              ),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,),
-                              ),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,),
-                              ),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,),
-                              ),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,),
-                              ),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,),
-                              ),
-                            ),
+                            PinEditText(),
+                            PinEditText(),
+                            PinEditText(),
+                            PinEditText(),
+                            PinEditText(),
+                            PinEditText(),
                           ],
                         ),
                       )

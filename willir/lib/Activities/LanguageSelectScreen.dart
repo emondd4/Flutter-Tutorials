@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:willir/Activities/SplashScreen.dart';
 import 'package:willir/Utils/CustomButtonStyle.dart';
 import 'package:willir/Utils/CustomColors.dart';
 import 'package:willir/Utils/CustomTextStyle.dart';
@@ -21,6 +24,13 @@ class _LanguageChangeScreenState extends State<LanguageChangeScreen> {
 
     return Scaffold(
       backgroundColor: CustomColors.PrimaryColor,
+      appBar: AppBar(
+        leading: InkWell(child: Icon(Icons.arrow_back_ios, color: CustomColors.White,), onTap: () {
+          exit(0);
+        },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
