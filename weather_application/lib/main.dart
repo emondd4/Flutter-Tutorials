@@ -32,13 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   WeatherApiClient client = WeatherApiClient();
   Weather? data;
   var key = "75de35267a54f9d5d03ed01e6a9471a8";
-  var location = "london";
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   client.getCurrentWeather(location, key);
-  // }
+  var location = "dhaka";
 
   Future<void> getData() async {
     data = await client.getCurrentWeather(location, key);
