@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_post_api/Model/LoginModel.dart';
 import 'package:flutter_post_api/Screens/SecondPage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPass = TextEditingController();
   late var visibility;
@@ -46,6 +50,10 @@ class _FirstScreenState extends State<FirstScreen> {
       setState(() {
         visibility = false;
       });
+
+      Map<String, dynamic> loginInfo = jsonDecode(response.body);
+      var token = loginInfo['data'];
+      saveInfo(token);
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const SecondPage()));
     }
 
@@ -107,5 +115,10 @@ class _FirstScreenState extends State<FirstScreen> {
         ),
       ),
     );
+  }
+
+  void saveInfo(token) async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.setString('Token', token);
   }
 }
