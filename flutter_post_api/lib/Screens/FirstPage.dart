@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_post_api/Screens/SecondPage.dart';
 import 'package:http/http.dart' as http;
 
 class FirstScreen extends StatefulWidget {
@@ -13,30 +14,12 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreenState extends State<FirstScreen> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPass = TextEditingController();
+  late var visibility;
 
   @override
   void initState() {
     super.initState();
-
-    _controllerEmail.addListener(() {
-      final String text = _controllerEmail.text.toLowerCase();
-      _controllerEmail.value = _controllerEmail.value.copyWith(
-        text: text,
-        selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
-        composing: TextRange.empty,
-      );
-    });
-
-    _controllerPass.addListener(() {
-      final String text = _controllerPass.text.toLowerCase();
-      _controllerPass.value = _controllerPass.value.copyWith(
-        text: text,
-        selection:
-            TextSelection(baseOffset: text.length, extentOffset: text.length),
-        composing: TextRange.empty,
-      );
-    });
+    visibility = false;
   }
 
   @override
@@ -58,6 +41,13 @@ class _FirstScreenState extends State<FirstScreen> {
         'password': _controllerPass.text
       },
     );
+
+    if(response.statusCode == 200){
+      setState(() {
+        visibility = false;
+      });
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const SecondPage()));
+    }
 
     print(response.body);
   }
@@ -100,11 +90,18 @@ class _FirstScreenState extends State<FirstScreen> {
                 height: (MediaQuery.of(context).size.width) * 0.10,
                 child: ElevatedButton(
                   onPressed: () {
+                    setState(() {
+                      visibility = true;
+                    });
                     getLoginInfo();
                   },
                   child: const Text("Login"),
                 ),
               ),
+              const SizedBox(height: 45,),
+              Center(
+                child: visibility ? const CircularProgressIndicator() : const Text("") ,
+              )
             ],
           ),
         ),
