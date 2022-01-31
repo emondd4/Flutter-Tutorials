@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -8,6 +9,16 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late var userToken;
+
+  @override
+  void initState() {
+    userToken = "";
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +27,16 @@ class _SecondPageState extends State<SecondPage> {
         centerTitle: true,
         backgroundColor: Colors.red,
       ),
-      body: const Center(
-        child: Text("Hello"),
+      body: Center(
+        child: Text(userToken),
       ),
     );
+  }
+
+  void getData() async {
+    final SharedPreferences prefs = await _prefs;
+    setState(() {
+      userToken = prefs.getString('Token') ?? "Empty";
+    });
   }
 }
