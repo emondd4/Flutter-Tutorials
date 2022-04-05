@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_push_notification/Utils/local_notification_service.dart';
 
 class RedPage extends StatefulWidget {
   const RedPage({Key? key}) : super(key: key);
@@ -35,6 +35,7 @@ class _RedPageState extends State<RedPage> {
   void initState() {
     super.initState();
     firebaseCloudMessaging_Listeners();
+    LocalNotificationService.initialize(context);
   }
 
   void firebaseCloudMessaging_Listeners() {
@@ -57,6 +58,9 @@ class _RedPageState extends State<RedPage> {
       if (event.notification != null) {
         print(event.notification!.body);
         print(event.notification!.title);
+
+        LocalNotificationService.display(event);
+
       }
     });
 

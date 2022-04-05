@@ -3,11 +3,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_push_notification/Screens/GreenScreen.dart';
 import 'package:flutter_push_notification/Screens/RedScreen.dart';
+import 'package:flutter_push_notification/Utils/local_notification_service.dart';
 
 ///Receive message when app is in background
 Future<void> backgroundHandler(RemoteMessage message) async{
   print(message.data.toString());
   print(message.notification!.title);
+  LocalNotificationService.display(message);
 }
 
 void main() async{
@@ -37,4 +39,5 @@ class MyApp extends StatelessWidget {
       initialRoute: "red",
     );
   }
+
 }
