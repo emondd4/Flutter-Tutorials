@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class RedPage extends StatefulWidget {
@@ -8,6 +10,8 @@ class RedPage extends StatefulWidget {
 }
 
 class _RedPageState extends State<RedPage> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,4 +30,28 @@ class _RedPageState extends State<RedPage> {
       ),
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    firebaseCloudMessaging_Listeners();
+  }
+
+  void firebaseCloudMessaging_Listeners() {
+
+    _firebaseMessaging.getToken().then((token) {
+      print(token);
+    });
+
+    FirebaseMessaging.instance.getInitialMessage();
+
+    ///foreground message receive work
+    FirebaseMessaging.onMessage.listen((event) {
+      if (event.notification != null) {
+        print(event.notification!.body);
+        print(event.notification!.title);
+      }
+    });
+  }
+
 }
