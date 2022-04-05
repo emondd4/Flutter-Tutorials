@@ -38,12 +38,19 @@ class _RedPageState extends State<RedPage> {
   }
 
   void firebaseCloudMessaging_Listeners() {
-
     _firebaseMessaging.getToken().then((token) {
       print(token);
     });
 
-    FirebaseMessaging.instance.getInitialMessage();
+    ///gives you the message on which user taps
+    ///and it open the app from terminated state
+    //FirebaseMessaging.instance.getInitialMessage();
+    FirebaseMessaging.instance.getInitialMessage().then((value) {
+      if(value != null){
+        final routeFromMessage = value.data["route"];
+        Navigator.of(context).pushNamed(routeFromMessage);
+      }
+    });
 
     ///foreground message receive work
     FirebaseMessaging.onMessage.listen((event) {
@@ -61,5 +68,4 @@ class _RedPageState extends State<RedPage> {
       Navigator.of(context).pushNamed(routeFromMessage);
     });
   }
-
 }
