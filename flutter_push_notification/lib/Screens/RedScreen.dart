@@ -52,6 +52,14 @@ class _RedPageState extends State<RedPage> {
         print(event.notification!.title);
       }
     });
+
+    ///when the app is in background but opened and user taps
+    ///on notification
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      final routeFromMessage = event.data["route"];
+      print(routeFromMessage);
+      Navigator.of(context).pushNamed(routeFromMessage);
+    });
   }
 
 }
