@@ -1,0 +1,14 @@
+{
+  "user": {
+    "userId": 1,
+    "name": "Mark",
+    "email": "mark@something.com",
+    "phone": "12345678",
+    "isActive": true,
+    "address": {
+      "street": "street",
+      "area": "area",
+      "postal_code": "1ab2c3"
+    }
+  }
+}
