@@ -8,6 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   final _tab_page = <Widget>[
     const Center(
       child: Icon(
@@ -34,15 +35,12 @@ class _HomePageState extends State<HomePage> {
 
   final _tab_title = <Tab>[
     const Tab(
-      icon: Icon(Icons.wb_cloudy),
       text: 'Tab 1',
     ),
     const Tab(
-      icon: Icon(Icons.alarm),
       text: 'Tab 2',
     ),
     const Tab(
-      icon: Icon(Icons.forum),
       text: 'Tab 3',
     )
   ];
@@ -55,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             title: const Text("TabLayout Example"),
             backgroundColor: Colors.cyan,
-            bottom: TabBar(tabs: _tab_title),
+            bottom: TabBar(tabs: _tab_title, indicatorColor: Colors.red,),
           ),
           body: TabBarView(children: _tab_page),
         ));
