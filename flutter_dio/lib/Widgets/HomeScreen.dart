@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dio/Widgets/UserInfoScreen.dart';
-import '../Dio/DioClient.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -28,6 +26,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(onPressed: () { Navigator.pushNamed(context, "get"); }, child: const Text("Get Request (User Info)")),
             const SizedBox(height: 10.0,),
             ElevatedButton(onPressed: () { Navigator.pushNamed(context, "delete"); }, child: const Text("Delete Request (Delete User)")),
+            const SizedBox(height: 10.0,),
+            ElevatedButton(onPressed: () { Navigator.pushNamed(context, "put"); }, child: const Text("Put Request (Update User)")),
           ],
         ),
       ),

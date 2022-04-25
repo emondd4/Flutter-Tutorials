@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dio/Widgets/DeleteScreen.dart';
+import 'package:flutter_dio/Widgets/PutScreen.dart';
 import 'package:flutter_dio/Widgets/UserInfoScreen.dart';
 import 'Widgets/HomeScreen.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         "home" : (_) => const HomePage(),
         "get" : (_) => const UserInfoPage(),
         "delete" : (_) => const DeletePage(),
+        "put" : (_) => const PutPage(),
       },
       initialRoute: "home",
     );
