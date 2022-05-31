@@ -90,10 +90,38 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
     dio.options.headers["authorization"] = basicAuth;
-    final response = await dio.get(ApiUtils.baseUrl+ApiUtils.loginEndPoint);
+    //final response = await dio.get(ApiUtils.baseUrl+ApiUtils.loginEndPoint);
+
+    try{
+      final response = await dio.get(ApiUtils.baseUrl+ApiUtils.loginEndPoint);
+      debugPrint(response.toString());
+    }on DioError catch(e){
+      if (e.type == DioErrorType.response) {
+        print('catched');
+        return;
+      }
+      if (e.type == DioErrorType.connectTimeout) {
+        print('check your connection');
+        return;
+      }
+
+      if (e.type == DioErrorType.receiveTimeout) {
+        print('unable to connect to the server');
+        return;
+      }
+
+      if (e.type == DioErrorType.other) {
+        print('Something went wrong');
+        return;
+      }
+      print(e);
+    }catch (e) {
+      print(e);
+    }
+
     //_loginResponse = JsonDecoder(response.data) as LoginResponseBaseModel;
 
-     debugPrint(response.toString());
+
 
     // if(response.data["data"].isNotEmpty == true){
     //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(response.data["data"])));
