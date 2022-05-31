@@ -23,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     _emailEditingController = TextEditingController();
     _passEditingController = TextEditingController();
+    _emailEditingController.text = "Amimul Ehsan";
+    _passEditingController.text = 'Rahi-8000';
     _loginResponse = LoginResponseBaseModel();
     super.initState();
   }
@@ -76,21 +78,26 @@ class _LoginScreenState extends State<LoginScreen> {
   _login(String email, String pass) async{
     var dio = Dio();
 
-    var formData = FormData.fromMap({
-      'api_key': 'harunApp',
-      'api_token': 'apiToken',
-      'email': email,
-      'password': pass,
-    });
+    // var formData = FormData.fromMap({
+    //   'api_key': 'harunApp',
+    //   'api_token': 'apiToken',
+    //   'email': email,
+    //   'password': pass,
+    // });
 
-    final response = await dio.post(ApiUtils.baseUrl+ApiUtils.loginEndPoint,data: formData);
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$email:$pass'));
+    print(basicAuth);
+
+
+    dio.options.headers["authorization"] = basicAuth;
+    final response = await dio.get(ApiUtils.baseUrl+ApiUtils.loginEndPoint);
     //_loginResponse = JsonDecoder(response.data) as LoginResponseBaseModel;
 
-    debugPrint(response.toString());
+     debugPrint(response.toString());
 
-    if(response.data["data"].isNotEmpty == true){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(response.data["data"])));
-    }
+    // if(response.data["data"].isNotEmpty == true){
+    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(response.data["data"])));
+    // }
 
   }
 
