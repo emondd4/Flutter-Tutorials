@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:basic_flutter_auth/Models/LoginResponseBaseModel.dart';
 import 'package:basic_flutter_auth/UI/HomePage.dart';
+import 'package:basic_flutter_auth/UI/StudDetailsPage.dart';
 import 'package:basic_flutter_auth/Utils/Utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +96,11 @@ class _LoginScreenState extends State<LoginScreen> {
     try{
       final response = await dio.get(ApiUtils.baseUrl+ApiUtils.loginEndPoint);
       debugPrint(response.toString());
+
+      if(response.toString().isNotEmpty == true){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => StudDetailsScreen()));
+      }
+
     }on DioError catch(e){
       if (e.type == DioErrorType.response) {
         print('catched');
@@ -120,12 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     //_loginResponse = JsonDecoder(response.data) as LoginResponseBaseModel;
-
-
-
-    // if(response.data["data"].isNotEmpty == true){
-    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomeScreen(response.data["data"])));
-    // }
 
   }
 
