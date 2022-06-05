@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 void main() => runApp(const MyApp());
@@ -54,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
             StreamBuilder(
               stream: _channel.stream,
               builder: (context, snapshot) {
+                _showToast(snapshot.data.toString());
                 return Text(snapshot.hasData ? '${snapshot.data}' : '');
               },
             )
@@ -65,6 +67,18 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Send message',
         child: const Icon(Icons.send),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Future _showToast(String data) async {
+    Fluttertoast.showToast(
+        msg: data,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
     );
   }
 
