@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_firebase_chat/UI/HomeScreen.dart';
+import 'package:flutter_firebase_chat/UI/RegisterScreen.dart';
 import '../FirebaseMethods/Methods.dart';
 
 class LoginPage extends StatefulWidget {
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                         _isLoading = false;
                         _emailController.text = "";
                         _passController.text = "";
-                        Navigator.pushNamed(context, "home");
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomePage()));
                       })
                     }else{
                       setState(() {
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
               Center(
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "register");
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterPage()));
                   },
                   child: const Text("Create Account", style: TextStyle(fontSize: 15.0, color: Colors.blue),),
                 ),
