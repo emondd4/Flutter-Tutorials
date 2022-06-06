@@ -7,12 +7,12 @@ Future<User?> createAccount(String _name, String _email, String _pass) async {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   try {
-    User? user = (await firebaseAuth.createUserWithEmailAndPassword(
-            email: _email, password: _pass))
-        .user;
+    UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: _email, password: _pass);
 
-    if(user != null){
+
       debugPrint("Account Create Successful");
+
+      userCredential.user!.updateDisplayName(_name);
 
       await firebaseFirestore.collection('users').doc(firebaseAuth.currentUser!.uid).set({
         "name": _name,
@@ -21,11 +21,7 @@ Future<User?> createAccount(String _name, String _email, String _pass) async {
         "uid": firebaseAuth.currentUser!.uid,
       });
 
-      return user;
-    }else{
-      debugPrint("Account Creation Failed");
-      return user;
-    }
+      return userCredential.user;
 
   } catch (e) {
     debugPrint(e.toString());
@@ -36,17 +32,21 @@ Future<User?> createAccount(String _name, String _email, String _pass) async {
 Future<User?> login(String _email,String _pass) async{
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   try{
-    User? user = (await firebaseAuth.signInWithEmailAndPassword(email: _email, password: _pass)).user;
+    UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(email: _email, password: _pass);
 
-    if(user != null){
-      debugPrint("Login Successful");
-      return user;
-    }else{
-      debugPrint("Credentials Doesn't Match");
-      return user;
-    }
+    print("Login Sucessfull");
+
+    firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .get()
+        .then((value) => userCredential.user!.updateDisplayName(value['name']));
+
+    return userCredential.user;
+
 
   }catch(e){
     debugPrint(e.toString());

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_chat/FirebaseMethods/Methods.dart';
+import 'package:flutter_firebase_chat/UI/ChatScreen.dart';
 import 'package:flutter_firebase_chat/UI/LoginScreen.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +20,36 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+
+  String chatRoomId(String user1, String user2) {
+
+    if (user1[0].toLowerCase().codeUnits[0] >=
+        user2[0].toLowerCase().codeUnits[0]) {
+      return "${user1[0].toLowerCase().codeUnits[0]}${user2[0].toLowerCase().codeUnits[0]}";
+    } else {
+      return "${user2[0].toLowerCase().codeUnits[0]}${user1[0].toLowerCase().codeUnits[0]}";
+    }
+  }
+
+  void onSearch() async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await _firestore
+        .collection('users')
+        .where("email", isEqualTo: _search.text)
+        .get()
+        .then((value) {
+      setState(() {
+        userMap = value.docs[0].data();
+        isLoading = false;
+      });
+      print(userMap);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,43 +110,27 @@ class _HomePageState extends State<HomePage> {
           userMap != null
               ? ListTile(
             onTap: () {
-            },
-            leading: Icon(Icons.account_box, color: Colors.black),
-            title: Text(
+              String roomId = chatRoomId(_auth.currentUser!.displayName!, userMap!['name']);
+
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => ChatPage(
+                    chatRoomId: roomId,
+                    userMap: userMap!,
+                  ),
+                ),);
+              }, leading: Icon(Icons.account_box, color: Colors.black), title: Text(
               userMap!['name'],
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 17,
                 fontWeight: FontWeight.w500,
               ),
-            ),
-            subtitle: Text(userMap!['email']),
-            trailing: Icon(Icons.chat, color: Colors.black),
+            ), subtitle: Text(userMap!['email']), trailing: Icon(Icons.chat, color: Colors.black),
           )
               : Container(),
         ],
       ),
     );
-  }
-
-  void onSearch() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-    setState(() {
-      isLoading = true;
-    });
-
-    await _firestore
-        .collection('users')
-        .where("email", isEqualTo: _search.text)
-        .get()
-        .then((value) {
-      setState(() {
-        userMap = value.docs[0].data();
-        isLoading = false;
-      });
-      print(userMap);
-    });
   }
 
 }
