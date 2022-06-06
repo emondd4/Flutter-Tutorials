@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 Future<User?> createAccount(String _name, String _email, String _pass) async {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   try {
     User? user = (await firebaseAuth.createUserWithEmailAndPassword(
@@ -11,6 +13,13 @@ Future<User?> createAccount(String _name, String _email, String _pass) async {
 
     if(user != null){
       debugPrint("Account Create Successful");
+
+      await firebaseFirestore.collection("users").doc(firebaseAuth.currentUser?.uid).set({
+        "name" : _name,
+        "email" : _email,
+        "status" : "Unavailable"
+      });
+
       return user;
     }else{
       debugPrint("Account Creation Failed");
