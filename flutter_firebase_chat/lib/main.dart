@@ -1,15 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'UI/HomeScreen.dart';
-import 'UI/LoginScreen.dart';
-import 'UI/RegisterScreen.dart';
+import 'package:flutter_firebase_chat/FirebaseMethods/Authenticate.dart';
 
 
 Future main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
@@ -25,12 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {
-        "login":(_) => const LoginPage(),
-        "register":(_) => const RegisterPage(),
-        "home":(_) => const HomePage(),
-      },
-      initialRoute: "login",
+      home: Authenticate(),
     );
   }
 }
