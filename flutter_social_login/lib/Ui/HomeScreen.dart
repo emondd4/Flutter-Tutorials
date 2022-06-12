@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
   _facebookLogin() async {
 
     //Trigger the sign-in flow
-    final LoginResult loginResult = await _facebookAuth.login(permissions: ['email']);
+    final LoginResult loginResult = await _facebookAuth.login(permissions: ['email','public_picture']);
 
     print("Login Result ${loginResult.accessToken}");
 
