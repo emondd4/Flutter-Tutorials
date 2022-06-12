@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FacebookAuth _facebookAuth = FacebookAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
 
@@ -75,8 +76,10 @@ class _HomePageState extends State<HomePage> {
 
   _facebookLogin() async {
 
-    // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+    //Trigger the sign-in flow
+    final LoginResult loginResult = await _facebookAuth.login(permissions: ['email']);
+
+    print("Login Result ${loginResult.accessToken}");
 
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
