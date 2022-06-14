@@ -19,6 +19,18 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class _ChatPageState extends State<ChatPage> {
 
+  @override
+  void initState() {
+
+    _firestore.collection('chatroom').doc(widget.chatRoomId).collection('chats').snapshots().forEach((value) {
+      for (QueryDocumentSnapshot docSnapshot in value.docs) {
+        docSnapshot.reference.delete();
+      }
+    });
+
+    super.initState();
+  }
+
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> messages = {
