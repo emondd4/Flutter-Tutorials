@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_chat/FirebaseMethods/Methods.dart';
+import 'package:flutter_firebase_chat/UI/ChatScreen.dart';
 import 'package:flutter_firebase_chat/UI/LoginScreen.dart';
 
 class HomePage extends StatefulWidget {
@@ -86,7 +87,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                       userMap != null
                           ? ListTile(
-                              onTap: () {},
+                              onTap: () {
+                                String roomId = chatRoomId(
+                                    _firebaseAuth.currentUser!.displayName!,
+                                    userMap!['name']);
+
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => ChatPage(
+                                      chatRoomId: roomId,
+                                      userMap: userMap!,
+                                    ),
+                                  ),
+                                );
+                              },
                               leading: const Icon(Icons.account_box,
                                   color: Colors.black),
                               title: Text(
@@ -122,5 +136,14 @@ class _HomePageState extends State<HomePage> {
       });
       debugPrint(userMap.toString());
     });
+  }
+
+  String chatRoomId(String user1, String user2) {
+    if (user1[0].toLowerCase().codeUnits[0] >=
+        user2[0].toLowerCase().codeUnits[0]) {
+      return "${user1[0].toLowerCase().codeUnits[0]}${user2[0].toLowerCase().codeUnits[0]}";
+    } else {
+      return "${user2[0].toLowerCase().codeUnits[0]}${user1[0].toLowerCase().codeUnits[0]}";
+    }
   }
 }
