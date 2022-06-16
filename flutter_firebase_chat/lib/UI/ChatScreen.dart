@@ -16,17 +16,25 @@ class ChatPage extends StatefulWidget {
 final TextEditingController _message = TextEditingController();
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final FirebaseAuth _auth = FirebaseAuth.instance;
+bool deleteChat = true;
 
 class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-
-    _firestore.collection('chatroom').doc(widget.chatRoomId).collection('chats').snapshots().forEach((value) {
-      for (QueryDocumentSnapshot docSnapshot in value.docs) {
-        docSnapshot.reference.delete();
-      }
-    });
+    //
+    // if(deleteChat){
+    //   print(deleteChat);
+    //   _firestore.collection('chatroom').doc(widget.chatRoomId).collection('chats').snapshots().forEach((value) {
+    //     for (QueryDocumentSnapshot docSnapshot in value.docs) {
+    //       docSnapshot.reference.delete();
+    //     }
+    //   });
+    //   setState(() {
+    //     deleteChat = false;
+    //     print(deleteChat);
+    //   });
+    // }
 
     super.initState();
   }
@@ -34,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> messages = {
-        "sendby": _auth.currentUser!.displayName,
+        "sendby": _auth.currentUser!.email,
         "message": _message.text,
         "type": "text",
         "time": FieldValue.serverTimestamp(),
@@ -57,27 +65,15 @@ class _ChatPageState extends State<ChatPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: StreamBuilder<DocumentSnapshot>(
-          stream:
-          _firestore.collection("users").doc(widget.userMap['uid']).snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.data != null) {
-              return Container(
-                child: Column(
-                  children: [
-                    Text(widget.userMap['name']),
-                    Text(
-                      snapshot.data!['status'],
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
+        title: Column(
+          children: [
+            Text(widget.userMap['name']),
+            Text(
+              widget.userMap['status'],
+              style: const TextStyle(fontSize: 14),
+            ),
+          ],
+        )
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -144,10 +140,11 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget messages(Size size, Map<String, dynamic> map, BuildContext context) {
+    print(map);
     return map['type'] == "text"
         ? Container(
       width: size.width,
-      alignment: map['sendby'] == _auth.currentUser!.displayName
+      alignment: map['sendby'] == _auth.currentUser!.email
           ? Alignment.centerRight
           : Alignment.centerLeft,
       child: Container(
@@ -171,7 +168,7 @@ class _ChatPageState extends State<ChatPage> {
       height: size.height / 2.5,
       width: size.width,
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-      alignment: map['sendby'] == _auth.currentUser!.displayName
+      alignment: map['sendby'] == _auth.currentUser!.email
           ? Alignment.centerRight
           : Alignment.centerLeft,
     );

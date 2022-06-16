@@ -12,13 +12,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-Map<String, dynamic>? userMap;
-final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final TextEditingController _searchController = TextEditingController();
+
 
 class _HomePageState extends State<HomePage> {
   late bool _isLoading;
+
+  Map<String, dynamic>? userMap;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -89,8 +91,11 @@ class _HomePageState extends State<HomePage> {
                           ? ListTile(
                               onTap: () {
                                 String roomId = chatRoomId(
-                                    _firebaseAuth.currentUser!.displayName!,
-                                    userMap!['name']);
+                                    _firebaseAuth.currentUser!.email!,
+                                    userMap!['email']);
+
+                                print(roomId);
+                                print("${userMap!['uid']}");
 
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
