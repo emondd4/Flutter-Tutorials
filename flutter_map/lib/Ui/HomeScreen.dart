@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/Ui/GeoFetchingScreen.dart';
+import 'package:flutter_map/Ui/LocationMarkerScreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,6 +29,10 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const GeoFetchingPage()));
               }, child: const Text("Geo Fetching")),
+            const SizedBox(height: 10.0,),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const LocationMarkerPage()));
+            }, child: const Text("Location Marker")),
           ],
         ),
       ),
