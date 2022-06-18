@@ -32,7 +32,7 @@ class _GeoFetchingPageState extends State<GeoFetchingPage> {
             ElevatedButton(onPressed: () async{
 
                 _isServiceEnabled = await _location.serviceEnabled();
-                if(_isServiceEnabled) {
+                if(!_isServiceEnabled) {
                   _isServiceEnabled = await _location.requestService();
                   if(_isServiceEnabled) return;
                 }
@@ -44,6 +44,7 @@ class _GeoFetchingPageState extends State<GeoFetchingPage> {
                 }
 
                 _locationData = await _location.getLocation();
+
                 setState(() {
                   isGetLocation = true;
                 });
@@ -51,9 +52,41 @@ class _GeoFetchingPageState extends State<GeoFetchingPage> {
               }, child: const Text("Get Location Once")),
             isGetLocation ? Text('Location: ${_locationData.latitude} / ${_locationData.longitude}') : Container(),
             const SizedBox(height: 10.0,),
-            ElevatedButton(onPressed: (){
+            ElevatedButton(onPressed: () async{
+
+              _isServiceEnabled = await _location.serviceEnabled();
+              if(!_isServiceEnabled) {
+                _isServiceEnabled = await _location.requestService();
+                if(_isServiceEnabled) return;
+              }
+
+              _permissionStatus = await _location.hasPermission();
+              if(_permissionStatus == false){
+                _permissionStatus = await _location.requestPermission();
+                if(_permissionStatus == PermissionStatus.granted) return;
+              }
+
+              _locationData = await _location.getLocation();
+
+              setState(() {
+                isListenLocation = true;
+              });
 
               }, child: const Text("Listen Location")),
+            const SizedBox(height: 10.0,),
+            Expanded(
+              child: StreamBuilder(
+                stream: _location.onLocationChanged,
+                builder: (context,snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                      var data = snapshot.data as LocationData;
+                      return Text("Location Changed:: Lat: ${data.latitude} & Lon: ${data.longitude}");
+                  }else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            )
           ],
         ),
       ),
