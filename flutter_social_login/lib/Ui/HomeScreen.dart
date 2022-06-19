@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_social_login/Ui/MainScreen.dart';
+import 'package:flutter_social_login/Ui/OptScreen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,6 +48,9 @@ class _HomePageState extends State<HomePage> {
               IconButton(onPressed: () {
                 _googleLogin();
               }, icon: Image.asset("assets/images/google.png",height: 64.0,width: 64.0,)),
+              IconButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const OtpPage()));
+              }, icon: Image.asset("assets/images/phone.png",height: 64.0,width: 64.0,)),
             ],
           ),
         ),
@@ -91,6 +95,8 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
+
 
   _checkUser() async{
     final user = await _auth.currentUser;
