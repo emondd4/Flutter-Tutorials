@@ -58,8 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Navigator.push(context, CupertinoPageRoute(builder: (context) => HomeScreen()));
           },
           done: Text("Done"),
-          showSkipButton: true,
-          showNextButton: true,
+          showSkipButton: false,
+          showNextButton: false,
+          showDoneButton: false,
           next: Text("Next"),
           skip: Text("Skip"),
           dotsDecorator: DotsDecorator(
