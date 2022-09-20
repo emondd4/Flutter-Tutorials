@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/recycler_view_pager/BuildConfig.java
+ com.example.recycler_view_pager.BuildConfig
