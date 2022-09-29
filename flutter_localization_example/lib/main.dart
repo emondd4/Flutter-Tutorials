@@ -3,7 +3,7 @@ import 'package:flutter_locales/flutter_locales.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Locales.init(['en', 'fa']);
+  await Locales.init(['en', 'lt']);
   runApp(MyApp());
 }
 
@@ -75,8 +75,8 @@ class _LanguagePageState extends State<LanguagePage> {
             onTap: () => LocaleNotifier.of(context)?.change('en'),
           ),
           ListTile(
-            title: Text("دری"),
-            onTap: () => LocaleNotifier.of(context)?.change('fa'),
+            title: Text("Lithunian"),
+            onTap: () => LocaleNotifier.of(context)?.change('lt'),
           ),
         ],
       ),
