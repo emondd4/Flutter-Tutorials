@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage>{
   int tabPosition = 0;
 
   List<String> tabTitle = ["Delivery To","Pick Up","Dine In"];
-  List<Icon> tabBody = [Icon(Icons.directions_car), Icon(Icons.directions_transit), Icon(Icons.directions_bike),];
+  List<Icon> tabBody = [const Icon(Icons.directions_car), const Icon(Icons.directions_transit), const Icon(Icons.directions_bike),];
 
   @override
   void initState() {

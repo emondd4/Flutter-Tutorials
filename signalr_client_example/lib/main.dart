@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void loadProductList() async{
     try {
-      var response = await Dio().get('https://signalr.bitlance.xyz/Home/GetProducts');
+      var response = await Dio().get('https://signalr.bitlance.xyz');
       print("Response $response");
       productListData.fetchedCompanyDataValue.value = response.data.map<ProductListBaseModel>((item) => ProductListBaseModel.fromJson(item)).toList();
       print("ProductListDataClass ${productListData.fetchedCompanyDataValue}");
