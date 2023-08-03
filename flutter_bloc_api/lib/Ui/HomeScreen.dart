@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                       } else if (state is JokeLoaded) {
                         return Text(state.jokeModel.value.toString());
                       } else if (state is JokeError) {
-                        return Container();
+                        return Text("${state.message}");
                       } else {
                         return Container();
                       }
